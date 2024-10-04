@@ -5,7 +5,7 @@ import {
   MoonIcon,
   BookOpenIcon,
   ArrowDownTrayIcon,
-  ChatBubbleLeftIcon,
+  // ChatBubbleLeftIcon,
 } from "@heroicons/react/24/solid"; // Import ikon yang diperlukan
 import Layout from "../components/Layout";
 import { useThemeContext } from "../hooks/useThemeContext"; // Import ThemeContext
@@ -66,19 +66,19 @@ export const Home = () => {
   const buttons = [
     {
       label: "Dzikir Pagi",
-      icon: <SunIcon className="h-5 w-5 mr-2" />,
+      icon: <SunIcon className="h-12 w-12" />,
       path: "/pagi",
     },
     {
       label: "Dzikir Petang",
-      icon: <MoonIcon className="h-5 w-5 mr-2" />,
+      icon: <MoonIcon className="h-12 w-12" />,
       path: "/petang",
     },
-    {
-      label: "Dzikir Setelah Shalat",
-      icon: <ChatBubbleLeftIcon className="h-5 w-5 mr-2" />,
-      path: "/setelah-shalat",
-    },
+    // {
+    //   label: "Dzikir Setelah Shalat",
+    //   icon: <ChatBubbleLeftIcon className="h-5 w-5 mr-2" />,
+    //   path: "/setelah-shalat",
+    // },
   ];
 
   return (
@@ -121,19 +121,19 @@ export const Home = () => {
         )}
 
         {/* Links Section */}
-        <div className="space-y-4 w-full">
+        <div className="grid grid-cols-2 gap-4 w-full">
           {buttons.map((button) => (
             <button
               key={button.label}
               onClick={() => navigate(button.path)}
-              className={`w-full border rounded-lg py-3 font-semibold flex items-center justify-center transition-colors duration-300 ${
+              className={`border rounded-lg p-4 font-semibold flex flex-col items-center justify-center transition-colors duration-300 ${
                 theme === "dark"
                   ? "bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
                   : "bg-gray-50 border-gray-200 text-black hover:bg-gray-200"
               }`}
             >
-              {button.icon}
-              {button.label}
+              <div className="text-4xl mb-2">{button.icon}</div>
+              <div>{button.label}</div>
             </button>
           ))}
         </div>

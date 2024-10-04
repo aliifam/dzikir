@@ -1,7 +1,13 @@
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/solid";
 import NestedItem from "./NestedItem";
 import { DzikirItemType, fontSizes, SubItem } from "../types/types";
 import { useThemeContext } from "../hooks/useThemeContext"; // Import the ThemeContext
+import InfoDialog from "./InfoDialog"; // Import the InfoDialog component
+import { useState } from "react";
 
 interface DzikirItemProps {
   item: DzikirItemType; // Gunakan tipe DzikirItemType
@@ -24,14 +30,39 @@ const DzikirItem: React.FC<DzikirItemProps> = ({
   const selectedFontSize =
     fontSizes.find((size) => size.value === fontSize) || fontSizes[1]; // Default to Medium
 
+  // State untuk mengontrol dialog
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleOpenDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+  };
+
   return (
     <div
-      className={`mb-6 p-4 rounded-lg shadow-lg border hover:shadow-xl ${
+      className={`mb-6 p-4 rounded-lg shadow-lg border hover:shadow-xl relative ${
         theme === "dark"
           ? "bg-gray-800 border-gray-700"
           : "bg-gray-50 border-gray-200"
       }`}
     >
+      {/* Tombol Info di pojok kanan atas */}
+      {(item.faedah || item.sumber) && (
+        <button
+          onClick={handleOpenDialog}
+          className="absolute top-3 right-3 text-blue-500 hover:text-blue-700"
+        >
+          <InformationCircleIcon
+            className={`h-6 w-6 ${
+              theme === "dark" ? "text-white" : "text-gray-500"
+            }`}
+          />
+        </button>
+      )}
+
       <h2
         className={`text-xl font-semibold mb-2 ${
           theme === "dark" ? "text-white" : "text-black"
@@ -110,6 +141,14 @@ const DzikirItem: React.FC<DzikirItemProps> = ({
           </span>
         </button>
       </div>
+
+      {/* Render InfoDialog */}
+      <InfoDialog
+        isOpen={isDialogOpen}
+        onClose={handleCloseDialog}
+        faedah={item.faedah}
+        sumber={item.sumber}
+      />
     </div>
   );
 };
