@@ -77,6 +77,26 @@ export const About = () => {
               dzikir.zakiego.com
             </a>
           </li>
+          <li>
+            <a
+              href="https://rumaysho.com/1636-bacaan-dzikir-pagi.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              rumaysho.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://almanhaj.or.id/11518-dzikir-pagi-dan-petang.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              almanhaj.or.id
+            </a>
+          </li>
         </ol>
       </p>
     </Layout>
