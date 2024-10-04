@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "SansFont";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/inter.woff2) format("woff2");
+  }
+
+  @font-face {
+    font-family: "ArabicFont";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/arabic.otf) format("opentype");
+  }
+}
